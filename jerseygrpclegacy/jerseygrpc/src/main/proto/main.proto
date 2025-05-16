@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "org.example";
+option java_outer_classname = "grpcfolder";
+
+package grpc_service;
+
+service StudentService {
+  rpc getStudent (HelloRequest) returns (HelloResponse) {}
+  rpc getAllStudent (StudentRequest) returns (stream StudentResponse){}
+  rpc getBatchStudent (StudentRequest) returns (stream StudentBatchResponse) {}
+}
+
+message HelloRequest {
+  string name = 1;
+}
+
+message HelloResponse {
+  string message = 1;
+}
+
+import "google/protobuf/field_mask.proto";
+
+message StudentRequest{
+  int32 id = 1;
+  google.protobuf.FieldMask field_mask = 2;
+}
+message StudentResponse{
+  int32 studentId=1;
+  string firstName=2;
+  string lastName=3;
+  string middleName=4;
+  string dateOfBirth=5;
+  string gender=6;
+  string email=7;
+  string phoneNumber=8;
+  string addressLine1=9;
+  string addressLine2=10;
+  string city=11;
+  string state=12;
+  string zipCode=13;
+  string country=14;
+  string major=15;
+  string minor=16;
+  double gpa=17;
+  int32 creditsCompleted=18;
+  string enrollmentStatus=19;
+  string graduationDate=20;
+  int32 advisorId=21;
+  string financialAidStatus=22;
+  string scholarshipName=23;
+  string roomNumber=24;
+  string building=25;
+  string startDate=26;
+  string endDate=27;
+  string gradeLevel=28;
+  string registrationDate=29;
+  string lastModified=30;
+  string notes=31;
+}
+
+message StudentBatchResponse{
+  StudentResponse studentResponse= 1;
+}
